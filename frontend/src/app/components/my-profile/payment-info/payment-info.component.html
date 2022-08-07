@@ -1,0 +1,57 @@
+<my-profile>
+  <div class="rounded-end w-100">
+    <div class="d-flex flex-column">
+      <div class="text-center">
+        <h1>Payment cards</h1>
+      </div>
+      <div class="mb-1 d-flex w-50 justify-content-between m-auto bg-light"
+           *ngFor="let creditCard of creditCards">
+        <div class="d-flex">
+          <div class="d-flex">
+            <img [src]="'../../assets/credit-card.png'" style="width: 50px;height: 50px"/>
+          </div>
+          <div class="ms-2 d-flex flex-column">
+            <small class="text-muted">Transaction number: {{creditCard.transactionalNumber}}</small>
+            <small class="text-muted">Expiration date: {{creditCard.expirationMonth}} {{creditCard.expirationYear}}</small>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-outline-danger" (click)="deleteCreditCard(creditCard.transactionalNumber)">Delete
+          </button>
+        </div>
+      </div>
+      <div class="d-flex mt-4 m-auto">
+        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="openModal()">Add Credit Card
+        </button>
+      </div>
+    </div>
+  </div>
+</my-profile>
+<modal *ngIf="modalOpened" [title]="'Add Book'" (close)="closeModal()" (submit)="addCreditCard()">
+  <img [src]="'../assets/credit-cards.png'" class="img-fluid" style="height: 50px;width: 50px">
+  <label>Transactional card number:</label>
+  <input type="text"
+         class="form-control"
+         required
+         placeholder="Enter transactional number"
+         [(ngModel)]="addCreditCardRequest.transactionalNumber"/>
+  <label>Expiration Date:</label>
+  <div class="d-flex">
+  <input type="number"
+         class="form-control w-25 me-2"
+         required
+         placeholder="MM"
+         [(ngModel)]="addCreditCardRequest.expirationMonth"/>
+  <input type="number"
+         class="form-control w-25"
+         required
+         placeholder="YYYY"
+         [(ngModel)]="addCreditCardRequest.expirationYear"/>
+  </div>
+  <label>CVV:</label>
+  <input type="text"
+         class="form-control"
+         required
+         placeholder="ex. 414"
+         [(ngModel)]="addCreditCardRequest.cvvCode"/>
+</modal>

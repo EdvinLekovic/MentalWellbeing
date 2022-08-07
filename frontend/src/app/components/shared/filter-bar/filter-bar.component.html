@@ -1,0 +1,62 @@
+<div class="d-flex flex-column bg-light ms-2 mt-2 me-2 rounded" style="height: 410px;width:300px">
+  <h3 class="text-center bg-light pb-2 rounded-top">Filter {{title}}</h3>
+  <div class="w-75 align-self-center">
+    <div class="d-flex flex-column">
+      <h5>Price:</h5>
+      <div class="d-flex">
+        <input class="form-control w-75"
+               name="number"
+               type="number"
+               id="priceFrom"
+               placeholder="From"
+               [(ngModel)]="filter.priceFrom">
+        <h2>-</h2>
+        <input class="form-control w-75"
+               name="number"
+               type="number"
+               id="priceTo"
+               placeholder="To"
+               [(ngModel)]="filter.priceTo">
+      </div>
+    </div>
+    <div class="d-flex flex-column">
+      <h5>Rating:</h5>
+      <div class="d-flex justify-content-center">
+        <div class="d-flex" *ngFor="let rating of [1,2,3,4,5]">
+          <div class="d-flex flex-column me-3">
+            <label class="form-check-label text-center">
+              {{rating}}
+            </label>
+            <input class="d-flex form-check-input"
+                   name="selectedBrand"
+                   type="checkbox"
+                   [value]="rating"
+                   [id]="rating"
+                   (change)="ratingSelection($event)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column">
+      <h5>{{productName}}:</h5>
+      <input class="form-control"
+             name="emissions"
+             type="text"
+             id="emissions"
+             placeholder=""
+             [(ngModel)]="filter.productName">
+    </div>
+    <div class="d-flex flex-column">
+      <h5>Instructor:</h5>
+      <input class="form-control"
+             name="emissions"
+             type="text"
+             id="year"
+             placeholder=""
+             [(ngModel)]="filter.instructorName">
+    </div>
+    <div class="d-flex flex-column mt-3">
+      <button class="btn btn-secondary" (click)="filterElements()">Filter</button>
+    </div>
+  </div>
+</div>

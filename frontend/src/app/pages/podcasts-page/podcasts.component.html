@@ -1,0 +1,54 @@
+<div class="d-flex">
+  <filter-bar [title]="'Podcasts'" [productName]="'Podcast title'"
+              (filteredElements)="filteredElements($event)"></filter-bar>
+  <div>
+    <button class="btn btn-light ms-4" *ngIf="userEligible" (click)="openModal()">Add new podcast
+    </button>
+    <app-multimedia-item-list [imageUrl]="'here'" [detailsUrl]="'/podcasts'" *ngIf="filteredPodcasts"
+                              [multimediaList]="filteredPodcasts"></app-multimedia-item-list>
+  </div>
+</div>
+<modal *ngIf="modalOpened" [title]="'Add Podcast'" (close)="closeModal()" (submit)="addPodcast()">
+  <div class="p-1">
+    <input type="text"
+           id="title"
+           name=title
+           required
+           class="form-control mt-3"
+           [(ngModel)]="podcastRequest.title"
+           placeholder="Title"/>
+    <textarea type="text"
+              id="description"
+              name=description
+              required
+              class="form-control mt-3"
+              [(ngModel)]="podcastRequest.description"
+              placeholder="Description"
+              style="height: 200px"></textarea>
+    <input type="number"
+           id="price"
+           name=price
+           required
+           class="form-control mt-3"
+           [(ngModel)]="podcastRequest.price"
+           placeholder="Price"/>
+    <label class="mt-3" for="podcast">Podcast:</label>
+    <input type="file"
+           id="podcast"
+           name=podcast
+           required
+           class="form-control"
+           [(ngModel)]="podcastRequest.podcast"
+           (change)="onFileChange($event,'podcast')"
+           placeholder="Username"/>
+    <label class="mt-3" for="image">Image:</label>
+    <input type="file"
+           id="image"
+           name=image
+           required
+           class="form-control"
+           [(ngModel)]="podcastRequest.image"
+           (change)="onFileChange($event,'image')"
+           placeholder="Username"/>
+  </div>
+</modal>

@@ -1,0 +1,33 @@
+/* this makes the .modal visible */
+.show {
+  display: block;
+}
+
+
+/* this makes the element hidden */
+/* invisible */
+.hidden {
+  display: none;
+}
+
+/* this holds the CSS display of the modal */
+.modal {
+  background: #fff;
+  display: flex;
+  z-index: 1000;
+  width: 500px;
+  height: auto;
+  top: 10%;
+  left: 35%;
+}
+
+/* backdrop color */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+}

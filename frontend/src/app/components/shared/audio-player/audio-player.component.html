@@ -1,0 +1,6 @@
+<div class="d-flex flex-column align-items-center">
+  <img class="pb-3" *ngIf="image" [src]="image" style="width: 500px"/>
+  <h1 class="text-light">{{title}}</h1>
+  <ang-music-player [audioList]="audioList" [activeRepeatButtonColor]="'white'" [width]="'1000px'"
+                    [backgroundColor]="'rgba(51,26,69,1)'"></ang-music-player>
+</div>

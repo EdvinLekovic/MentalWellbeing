@@ -1,0 +1,16 @@
+<a *ngIf="multimedia" class="d-flex m-2 flex-column rounded text-decoration-none text-light"
+   [routerLink]="detailsPageUrl" (mouseenter)="onHover()" (mouseleave)="leaveHover()" [ngStyle]="cardStyle">
+  <img class="rounded-3" [src]="imageData" style="width: 350px;height: 250px">
+  <div class="d-flex flex-column pt-1">
+    <h5 class="text-break" title="">{{multimedia.title}}</h5>
+    <small>{{multimedia.creatorFullName}}</small>
+    <div class="d-flex">
+      <div class="text-warning">
+        {{multimedia.rating | number : '1.1-1'}} <i class="fa fa-star" *ngFor="let i of listingStars"></i>
+      </div>
+      <p class="ms-2">{{multimedia.numOfUsers}} users</p>
+    </div>
+    <h5>Price: ${{multimedia.price}}</h5>
+  </div>
+</a>
+

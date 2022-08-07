@@ -1,0 +1,58 @@
+<div class="d-flex">
+  <filter-bar [title]="'Books'" [productName]="'Book name'" (filteredElements)="filteredElements($event)"></filter-bar>
+  <div>
+    <button class="btn btn-light ms-4" *ngIf="userEligible" (click)="openModal()">Add new Book</button>
+    <app-multimedia-item-list (updateChange)="updateChanges()" [detailsUrl]="'/books'" *ngIf="filteredBooks" [multimediaList]="filteredBooks"></app-multimedia-item-list>
+  </div>
+</div>
+<modal *ngIf="modalOpened" [title]="'Add Book'" (close)="closeModal()" (submit)="addBook()">
+  <div class="p-1">
+    <input type="text"
+           id="title"
+           name=title
+           required
+           class="form-control mt-3"
+           [(ngModel)]="bookRequest.title"
+           placeholder="Title"/>
+    <input type="text"
+           id="author"
+           name=author
+           required
+           class="form-control mt-3"
+           [(ngModel)]="bookRequest.author"
+           placeholder="Author"/>
+    <textarea type="text"
+              id="description"
+              name=description
+              required
+              class="form-control mt-3"
+              [(ngModel)]="bookRequest.description"
+              placeholder="Description"
+              style="height: 100px"></textarea>
+    <input type="number"
+           id="price"
+           name=price
+           required
+           class="form-control mt-3"
+           [(ngModel)]="bookRequest.price"
+           placeholder="Price"/>
+    <label class="mt-3" for="book">Book:</label>
+    <input type="file"
+           id="book"
+           name=book
+           required
+           class="form-control"
+           [(ngModel)]="bookRequest.book"
+           (change)="onFileChange($event,'book')"
+           placeholder="Username"/>
+    <label class="mt-3" for="image">Image:</label>
+    <input type="file"
+           id="image"
+           name=image
+           required
+           class="form-control"
+           [(ngModel)]="bookRequest.image"
+           (change)="onFileChange($event,'image')"
+           placeholder="Username"/>
+  </div>
+</modal>

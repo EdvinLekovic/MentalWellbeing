@@ -1,0 +1,80 @@
+<div class="d-flex pt-5">
+  <div class="d-flex flex-column shadow-lg p-3 mb-5 bg-body rounded w-25 m-auto ">
+    <div class="border-bottom">
+      <h3>Register</h3>
+    </div>
+    <form class="d-flex flex-column justify-content-center" (ngSubmit)="registerUser()">
+      <input type="text"
+             id="username"
+             name=username
+             required
+             class="form-control mt-3"
+             [(ngModel)]="user.username"
+             placeholder="Username"/>
+
+      <input type="text"
+             id="name"
+             name="name"
+             required
+             class="form-control mt-3"
+             [(ngModel)]="user.name"
+             placeholder="Name"
+      />
+
+      <input type="text"
+             id="lastname"
+             name="lastname"
+             required
+             class="form-control mt-3"
+             [(ngModel)]="user.lastName"
+             placeholder="Lastname"
+      />
+
+      <input type="password"
+             id="password"
+             name="password"
+             required
+             class="form-control mt-3"
+             [(ngModel)]="user.password"
+             placeholder="Password"
+      />
+
+      <input type="password"
+             id="repeatPassword"
+             name="repeatPassword"
+             required
+             class="form-control mt-3"
+             placeholder="Repeat Password"
+             [(ngModel)]="user.repeatPassword"
+      />
+      <div class="d-flex flex-column mt-3 w-100">
+        <label>User role:</label>
+        <div class="d-flex flex-column">
+          <div class="btn-group w-100" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="radio"
+                   class="btn-check"
+                   id="btn_check1"
+                   autocomplete="off"
+                   value="USER"
+                   name="role"
+                   [(ngModel)]="user.role">
+            <label class="btn btn-outline-dark w-50" for="btn_check1">USER</label>
+            <input type="radio"
+                   class="btn-check"
+                   id="btn_check2"
+                   autocomplete="off"
+                   value="CREATOR"
+                   name="role"
+                   [(ngModel)]="user.role">
+            <label class="btn btn-outline-dark w-50" for="btn_check2">CREATOR</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit"
+              class="btn btn-dark w-100 mt-3">Sign up
+      </button>
+    </form>
+    <a class="text-center mt-3" [routerLink]="'/login'" style="color:rgba(27,0,97,1)">Already have an account?</a>
+  </div>
+</div>

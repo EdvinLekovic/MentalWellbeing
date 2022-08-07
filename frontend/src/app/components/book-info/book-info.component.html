@@ -1,0 +1,6 @@
+<multimedia-details *ngIf="books"
+                    [reviewsUrl]="'books'"
+                    [multimedia]="books"
+                    (buyButtonClicked)="openModal()"
+                    (updateChanges)="updateChanges()"></multimedia-details>
+

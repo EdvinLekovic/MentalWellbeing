@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center"  *ngIf="videoData">
+  <app-shared-video-player [video]="videoData"
+                           [image]="'../assets/feed-brain.png'"></app-shared-video-player>
+  <div class="d-flex flex-column mt-3 w-25">
+    <div class="align-self-center mb-3">
+      <button *ngIf="user && ['CREATOR','ADMIN'].includes(user.role)"
+              class="d-flex btn btn-outline-secondary" (click)="openModal()">Add Videos</button>
+    </div>
+    <div class="d-flex flex-column">
+      <div class="btn-group flex-column w-100 align-items-center" role="group"
+           aria-label="Basic checkbox toggle button group">
+        <div class="w-100" *ngFor="let video of videoList">
+        <input type="radio"
+               class="btn-check"
+               id="{{ 'btn_check' + video.id}}"
+               checked
+               autocomplete="off"
+               [value]="video.id"
+               [(ngModel)]="courseVideo"
+               (ngModelChange)="videoSelection($event)"
+               name="video">
+        <label class="btn btn-outline-light w-100"
+               [title]="video.title.length > 25 ? video.title : ''"
+               for="{{ 'btn_check' + video.id}}">{{video.title.substring(0,25)}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<modal *ngIf="modalOpened" [title]="'Add Videos'" (close)="closeModal()" (submit)="addVideosToCourse()">
+  <div class="p-1">
+    <input type="text"
+           id="title"
+           name=title
+           required
+           class="form-control mt-3"
+           [(ngModel)]="addVideoToCourseRequest.title"
+           placeholder="Title"/>
+    <textarea type="text"
+              id="description"
+              name=description
+              required
+              class="form-control mt-3"
+              [(ngModel)]="addVideoToCourseRequest.description"
+              placeholder="Description"
+              style="height: 200px"></textarea>
+    <input type="file"
+           id="videos"
+           name=videos
+           multiple
+           required
+           class="form-control mt-3"
+           [(ngModel)]="addVideoToCourseRequest.videos"
+           (change)="onFileChange($event)"/>
+  </div>
+</modal>

@@ -1,0 +1,110 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Payment Form</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column">
+          <div class="d-flex align-self-center">
+            <h5>Personal info</h5>
+          </div>
+          <div class="d-flex flex-column mt-2">
+            <label>Name:</label>
+            <input type="text" class="form-control" required placeholder="Enter your name"
+                   [(ngModel)]="paymentForm.name">
+          </div>
+          <div class="d-flex flex-column mt-2">
+            <label>Lastname:</label>
+            <input type="text" class="form-control" required placeholder="Enter your lastname"
+                   [(ngModel)]="paymentForm.lastName">
+          </div>
+          <div class="d-flex align-self-center mt-4">
+            <h5>Payment info</h5>
+          </div>
+          <button
+            class="btn btn-outline-dark mb-1 d-flex justify-content-between m-auto"
+            style="width: 68%"
+            *ngFor="let creditCard of creditCards"
+            (click)="selectTransactionToBuyWith(creditCard.transactionalNumber)"
+            [class]="selectedCardNumber === creditCard.transactionalNumber ? 'active' :''">
+            <div class="d-flex m-auto">
+              <div class="d-flex">
+                <img [src]="'../../../assets/credit-card.png'" style="width: 50px;height: 50px"/>
+              </div>
+              <div class="ms-2 d-flex flex-column">
+                <small class="text-muted">Card number: {{ creditCard.transactionalNumber }}</small>
+                <small class="text-muted">Expiration date:
+                  {{ creditCard.expirationMonth }}/{{ creditCard.expirationYear }}</small>
+              </div>
+            </div>
+          </button>
+          <div *ngIf="creditCards && creditCards.length > 0" class="d-flex flex-column w-25 m-auto">
+            <label>CVV:</label>
+            <input type="text"
+                   class="form-control"
+                   required
+                   placeholder="ex. 414"
+                   [(ngModel)]="paymentForm.cvvCode"/>
+          </div>
+          <div class="d-flex mt-4 m-auto">
+            <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#multiCollapseExample1" aria-expanded="false"
+                    aria-controls="multiCollapseExample1">Add Credit Card
+            </button>
+          </div>
+          <div class="col mt-2">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="card card-body">
+                <div class="d-flex flex-column">
+                  <div class="d-flex flex-column mt-2">
+                    <label>Transactional card number:</label>
+                    <input type="text"
+                           class="form-control"
+                           required
+                           placeholder="Enter transactional number"
+                           [(ngModel)]="addCreditCardRequest.transactionalNumber"/>
+                  </div>
+                  <div class="d-flex mt-2 justify-content-between">
+                    <div class="d-flex flex-column">
+                      <label>Expiration Date:</label>
+                      <div class="d-flex">
+                        <input type="number"
+                               class="form-control w-25 me-2"
+                               required
+                               placeholder="MM"
+                               [(ngModel)]="addCreditCardRequest.expirationMonth"/>
+                        <input type="number"
+                               class="form-control w-25"
+                               required
+                               placeholder="YYYY"
+                               [(ngModel)]="addCreditCardRequest.expirationYear"/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column w-25">
+                      <label>CVV:</label>
+                      <input type="text"
+                             class="form-control"
+                             required
+                             placeholder="ex. 414"
+                             [(ngModel)]="addCreditCardRequest.cvvCode"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer mt-1">
+                  <button type="submit" class="btn btn-outline-primary" (click)="addCreditCard()">Add New Credit Card
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="buyProduct()">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

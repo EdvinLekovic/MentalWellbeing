@@ -1,0 +1,36 @@
+<my-profile>
+<div class="container m-auto rounded-end">
+  <div class="d-flex flex-column">
+    <div class="m-auto">
+      <h1>PersonalInfo</h1>
+    </div>
+    <div class="mb-2">
+      <div class="m-auto w-75">
+        <label>Name</label>
+        <input type="text" class="form-control" [(ngModel)]="editUserRequest.name"/>
+      </div>
+    </div>
+    <div class="mb-2">
+      <div class="m-auto w-75">
+        <label>Lastname</label>
+        <input type="text" class="form-control" [(ngModel)]="editUserRequest.lastName"/>
+      </div>
+    </div>
+    <div class="mb-2">
+      <div class="m-auto w-75">
+        <label>Password</label>
+        <input type="text" class="form-control" [(ngModel)]="editUserRequest.password"/>
+      </div>
+    </div>
+    <div class="mb-2">
+      <div class="m-auto w-75">
+        <label>Repeat Password</label>
+        <input type="text" class="form-control"  [(ngModel)]="editUserRequest.repeatPassword"/>
+      </div>
+    </div>
+    <div class="m-auto w-75">
+      <button class="btn btn-primary" (click)="editUser()">Save changes</button>
+    </div>
+  </div>
+</div>
+</my-profile>

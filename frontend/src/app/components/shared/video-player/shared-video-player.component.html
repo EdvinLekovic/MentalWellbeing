@@ -1,0 +1,19 @@
+<div class="d-flex me-3">
+  <vm-player
+    theme="dark"
+    style="width: 920px;--vm-player-theme: rgba(51,26,69,1);">
+    <vm-video
+      cross-origin
+      [poster]="image">
+      <source
+        data-[src]="video"
+        type="video/mp4"/>
+      <track
+        default
+        kind="subtitles"
+        srclang="en"
+        label="English"/>
+    </vm-video>
+    <vm-default-ui></vm-default-ui>
+  </vm-player>
+</div>

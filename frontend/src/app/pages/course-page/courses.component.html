@@ -1,0 +1,42 @@
+<div class="d-flex">
+  <filter-bar [title]="'Courses'" [productName]="'Course title'" (filteredElements)="filteredElements($event)"></filter-bar>
+  <div>
+  <button class="btn btn-light ms-4" *ngIf="userEligible" (click)="openModal()">Add new course</button>
+  <app-multimedia-item-list [detailsUrl]="'/courses'" *ngIf="filteredCourses"
+                            [multimediaList]="filteredCourses"></app-multimedia-item-list>
+  </div>
+</div>
+<modal *ngIf="modalOpened" [title]="'Add Course'" (close)="closeModal()" (submit)="addCourse()">
+  <div class="p-1">
+    <input type="text"
+           id="title"
+           name=title
+           required
+           class="form-control mt-3"
+           [(ngModel)]="courseRequest.title"
+           placeholder="Title"/>
+    <textarea type="text"
+              id="description"
+              name=description
+              required
+              class="form-control mt-3"
+              [(ngModel)]="courseRequest.description"
+              placeholder="Description"
+              style="height: 200px"></textarea>
+    <input type="number"
+           id="price"
+           name=price
+           required
+           class="form-control mt-3"
+           [(ngModel)]="courseRequest.price"
+           placeholder="Price"/>
+    <input type="file"
+           id="username"
+           name=username
+           required
+           class="form-control mt-3"
+           [(ngModel)]="courseRequest.image"
+           (change)="onFileChange($event)"
+           placeholder="Username"/>
+  </div>
+</modal>

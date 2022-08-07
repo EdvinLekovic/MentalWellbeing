@@ -1,0 +1,30 @@
+<div *ngIf="user">
+  <div class="bg-light d-flex shadow-lg rounded w-100 m-auto">
+    <div class="d-flex w-25 shadow-lg bg-light rounded-start" style="height: 500px;width: 300px">
+      <div class="d-flex flex-column w-100 text-center">
+        <div class="d-flex bg-secondary rounded-circle justify-content-center align-self-center mt-2"
+             style="width: 100px;height: 100px;color: lightgray">
+          <h1 class="text-center display-1">{{user.name.charAt(0)}}</h1>
+        </div>
+        <div class="d-flex justify-content-center mt-1">
+          <h5 class="fw-bold">{{user.name}} {{user.lastName}}</h5>
+        </div>
+        <div class="d-flex flex-column mt-4">
+          <a [routerLink]="'/my-profile/personal-info'"
+                       class="list-group-item list-group-item-action list-group-item-light">
+            <i class="me-2 fa fa-user" style="width: 15px;height: 15px;"></i>
+            <span>Personal Info</span>
+          </a>
+          <a [routerLink]="'/my-profile/payment-info'"
+                       class="list-group-item list-group-item-action list-group-item-light">
+            <i class="me-2 fa fa-credit-card" style="width: 15px;height: 15px;"></i>
+            <span>Payment Info</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex w-75">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
